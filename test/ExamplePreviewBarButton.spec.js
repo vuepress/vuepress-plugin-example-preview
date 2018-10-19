@@ -1,4 +1,3 @@
-// @ts-check
 import ExamplePreviewBarButton from '../lib/ExamplePreviewBarButton'
 import bracketsSvg from '../lib/icons/brackets.svg'
 import codesandboxSvg from '../lib/icons/codesandbox.svg'

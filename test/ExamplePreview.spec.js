@@ -1,4 +1,0 @@
-describe('ExamplePreviewBarButton ', () => {
-  it('works', () => {
-  })
-})
