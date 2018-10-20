@@ -58,6 +58,8 @@
       "\\.svg$": "jest-raw-loader"
     },
     "moduleNameMapper": {
+      "^@source/(.*)$": "<rootDir>/docs/$1",
+      "^\\!?raw-loader\\!@source/(.*)$": "<rootDir>/docs/$1",
       "^\\!?raw-loader\\!(.*)$": "$1"
     },
     "coveragePathIgnorePatterns": [

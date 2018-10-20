@@ -75,7 +75,10 @@ export default {
 
       // files is usually an object, transform if it's not
       if (Array.isArray(files)) {
-        files = files.reduce((filesDict, name) => ({...filesDict, [name]: name}), {})
+        files = files.reduce((filesDict, name) => {
+          filesDict[name] = name
+          return filesDict
+        }, {})
       }
 
       // load the content of all the files
