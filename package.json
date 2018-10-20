@@ -11,6 +11,8 @@
     "lint": "eslint --color --ext=js,html lib test",
     "unit": "jest",
     "dev": "npm run unit -- --watchAll",
+    "docs": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
     "test": "npm run lint && npm run unit"
   },
   "files": [

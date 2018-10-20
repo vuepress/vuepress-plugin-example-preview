@@ -58,6 +58,7 @@ export default {
   methods: {
     async loadPage () {
       if (!this.name) return
+      // TODO allow users to provide the same example for all locales
       this.examplePromise = (this.pagePath ? import(`@source/${this.pagePath}/examples/${this.name}/index.js`) : import(`@source/examples/${this.name}/index.js`))
       const Example = await this.examplePromise
       // TODO dev warnings
