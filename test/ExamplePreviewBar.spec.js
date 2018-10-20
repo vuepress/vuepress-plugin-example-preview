@@ -1,8 +1,5 @@
 import ExamplePreviewBar from '../lib/ExamplePreviewBar'
-import bracketsSvg from '../lib/icons/brackets.svg'
 import { mount } from '@vue/test-utils'
-
-const tick = () => new Promise(resolve => process.nextTick(resolve))
 
 const files = [
   { name: 'index.js', content: 'let a = 0' },
