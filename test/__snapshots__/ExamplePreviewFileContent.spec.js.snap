@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ExamplePreviewFileContent  works 1`] = `"<div class=\\"code language-js\\"><pre v-pre=\\"\\" class=\\"language-js\\"><code><span class=\\"token keyword\\">let</span> a <span class=\\"token operator\\">=</span> <span class=\\"token number\\">0</span></code></pre></div>"`;

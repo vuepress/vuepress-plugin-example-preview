@@ -2,7 +2,7 @@ import ExamplePreviewFileContent from '../lib/ExamplePreviewFileContent'
 import { mount } from '@vue/test-utils'
 
 describe('ExamplePreviewFileContent ', () => {
-  it('works', () => {
+  it('works with a language', () => {
     const wrapper = mount(ExamplePreviewFileContent, {
       propsData: {
         file: {
@@ -11,6 +11,7 @@ describe('ExamplePreviewFileContent ', () => {
         },
       },
     })
-    expect(wrapper.html()).toMatchSnapshot()
+    expect(wrapper.text()).toBe('let a = 0')
+    expect(wrapper.find('.language-js').exists()).toBe(true)
   })
 })

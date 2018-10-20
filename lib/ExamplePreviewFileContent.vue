@@ -4,10 +4,7 @@
 
 <script>
 // TODO make the highlight work again...
-// import highlightCode from './highlight'
-// import highlightCode from '@vuepress/markdown/lib/highlight'
-import escapeHtml from 'escape-html'
-const highlightCode = v => escapeHtml(v)
+import highlightCode from './highlight'
 
 export default {
   props: {
