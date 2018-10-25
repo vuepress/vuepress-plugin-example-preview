@@ -36,7 +36,7 @@
     "vue": "^2.5.17",
     "vue-jest": "^3.0.0",
     "vue-template-compiler": "^2.5.17",
-    "vuepress": "^1.0.0-alpha.13"
+    "vuepress": "^1.0.0-alpha.16"
   },
   "repository": {
     "type": "git",
@@ -72,6 +72,7 @@
   "homepage": "https://github.com/posva/vuepress-plugin-example-preview#readme",
   "dependencies": {
     "focus-visible": "^4.1.5",
-    "raw-loader": "^0.5.1"
+    "raw-loader": "^0.5.1",
+    "webpack": "^4.22.0"
   }
 }
