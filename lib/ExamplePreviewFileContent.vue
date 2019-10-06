@@ -3,7 +3,6 @@
 </template>
 
 <script>
-// TODO make the highlight work again...
 import highlightCode from './highlight'
 
 export default {
