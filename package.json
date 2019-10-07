@@ -23,15 +23,16 @@
   "keywords": [],
   "license": "MIT",
   "devDependencies": {
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/preset-env": "^7.6.2",
     "@vue/test-utils": "^1.0.0-beta.25",
-    "babel-jest": "^23.0.1",
+    "babel-core": "bridge",
+    "babel-jest": "^24.9.0",
     "babel-plugin-dynamic-import-node": "^2.2.0",
-    "babel-plugin-syntax-dynamic-import": "^6.18.0",
-    "babel-preset-env": "^1.7.0",
     "codecov": "^3.0.2",
     "eslint": "^5.0.0",
     "eslint-config-posva": "^2.0.0",
-    "jest": "^23.1.0",
+    "jest": "^24.9.0",
     "jest-raw-loader": "^1.0.1",
     "vue": "^2.5.17",
     "vue-jest": "^3.0.0",
@@ -45,35 +46,9 @@
   "bugs": {
     "url": "https://github.com/posva/mylib/issues"
   },
-  "jest": {
-    "collectCoverage": true,
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "vue"
-    ],
-    "transform": {
-      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
-      "\\.svg$": "jest-raw-loader"
-    },
-    "moduleNameMapper": {
-      "^@source/(.*)$": "<rootDir>/docs/$1",
-      "^\\!?raw-loader\\!@source/(.*)$": "<rootDir>/docs/$1",
-      "^\\!?raw-loader\\!(.*)$": "$1"
-    },
-    "coveragePathIgnorePatterns": [
-      "<rootDir>/lib/icons/*.svg",
-      "<rootDir>/test/*.js",
-      "<rootDir>/test/.*.js",
-      "<rootDir>/test/*/*.js",
-      "<rootDir>/lib/highlight.js",
-      "<rootDir>/lib/loadLanguages.js"
-    ]
-  },
   "homepage": "https://github.com/posva/vuepress-plugin-example-preview#readme",
   "dependencies": {
     "focus-visible": "^4.1.5",
-    "raw-loader": "^0.5.1"
+    "raw-loader": "^3.1.0"
   }
 }
