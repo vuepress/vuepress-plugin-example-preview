@@ -1,3 +1,3 @@
-# Hello VuePress
+## TodoMVC
 
-<ExamplePreview name="counter"/>
+<ExamplePreview name="todomvc"/>

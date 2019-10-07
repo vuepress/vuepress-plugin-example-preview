@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component :is="component" />
+    <component :is="component"/>
   </div>
 </template>
 
