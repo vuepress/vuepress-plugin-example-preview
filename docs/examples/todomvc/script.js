@@ -1,50 +1,50 @@
-var STORAGE_KEY = 'todos-vuejs-2.0'
-var todoStorage = {
-  fetch: function () {
-    var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+const STORAGE_KEY = 'todos-vuejs-2.0'
+const todoStorage = {
+  fetch () {
+    const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
     todos.forEach(function (todo, index) {
       todo.id = index
     })
     todoStorage.uid = todos.length
     return todos
   },
-  save: function (todos) {
+  save (todos) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
-  }
+  },
 }
 
 // visibility filters
-var filters = {
-  all: function (todos) {
+const filters = {
+  all (todos) {
     return todos
   },
-  active: function (todos) {
+  active (todos) {
     return todos.filter(function (todo) {
       return !todo.completed
     })
   },
-  completed: function (todos) {
+  completed (todos) {
     return todos.filter(function (todo) {
       return todo.completed
     })
-  }
+  },
 }
 
 export default {
   // app initial state
-  data() {
+  data () {
     return {
       todos: todoStorage.fetch(),
       newTodo: '',
       editedTodo: null,
-      visibility: 'all'
+      visibility: 'all',
     }
   },
 
-  created() {
+  created () {
     // handle routing
     const onHashChange = () => {
-      var visibility = window.location.hash.replace(/#\/?/, '')
+      const visibility = window.location.hash.replace(/#\/?/, '')
       if (filters[visibility]) {
         this.visibility = visibility
       } else {
@@ -60,66 +60,66 @@ export default {
   // watch todos change for localStorage persistence
   watch: {
     todos: {
-      handler: function (todos) {
+      handler (todos) {
         todoStorage.save(todos)
       },
-      deep: true
-    }
+      deep: true,
+    },
   },
 
   // computed properties
   // https://vuejs.org/guide/computed.html
   computed: {
-    filteredTodos: function () {
+    filteredTodos () {
       return filters[this.visibility](this.todos)
     },
-    remaining: function () {
+    remaining () {
       return filters.active(this.todos).length
     },
     allDone: {
-      get: function () {
+      get () {
         return this.remaining === 0
       },
-      set: function (value) {
+      set (value) {
         this.todos.forEach(function (todo) {
           todo.completed = value
         })
-      }
-    }
+      },
+    },
   },
 
   filters: {
-    pluralize: function (n) {
+    pluralize (n) {
       return n === 1 ? 'item' : 'items'
-    }
+    },
   },
 
   // methods that implement data logic.
   // note there's no DOM manipulation here at all.
   methods: {
-    addTodo: function () {
-      var value = this.newTodo && this.newTodo.trim()
+    addTodo () {
+      const value = this.newTodo && this.newTodo.trim()
       if (!value) {
         return
       }
       this.todos.push({
         id: todoStorage.uid++,
         title: value,
-        completed: false
+        completed: false,
       })
       this.newTodo = ''
     },
 
-    removeTodo: function (todo) {
+    removeTodo (todo) {
       this.todos.splice(this.todos.indexOf(todo), 1)
     },
 
-    editTodo: function (todo) {
+    editTodo (todo) {
       this.beforeEditCache = todo.title
       this.editedTodo = todo
     },
 
-    doneEdit: function (todo) {
+    doneEdit (todo) {
       if (!this.editedTodo) {
         return
       }
@@ -130,24 +130,24 @@ export default {
       }
     },
 
-    cancelEdit: function (todo) {
+    cancelEdit (todo) {
       this.editedTodo = null
       todo.title = this.beforeEditCache
     },
 
-    removeCompleted: function () {
+    removeCompleted () {
       this.todos = filters.active(this.todos)
-    }
+    },
   },
 
   // a custom directive to wait for the DOM to be updated
   // before focusing on the input field.
   // https://vuejs.org/guide/custom-directive.html
   directives: {
-    'todo-focus': function (el, binding) {
+    'todo-focus' (el, binding) {
       if (binding.value) {
         el.focus()
       }
-    }
-  }
+    },
+  },
 }

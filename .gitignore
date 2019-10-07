@@ -7,4 +7,3 @@ coverage.lcov
 dist
 package-lock.json
 .DS_Store
-yarn.lock

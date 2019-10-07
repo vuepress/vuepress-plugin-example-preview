@@ -1,5 +1,9 @@
 <template>
-  <div v-html="content" class="code" :class="'language-' + language"></div>
+  <div
+    v-html="content"
+    class="example_preview_file_content code"
+    :class="'language-' + language"
+  ></div>
 </template>
 
 <script>
@@ -14,10 +18,13 @@ export default {
   },
 
   computed: {
-    language () {
-      return this.file.name.substring(this.file.name.lastIndexOf('.') + 1, this.file.name.length)
+    language() {
+      return this.file.name.substring(
+        this.file.name.lastIndexOf('.') + 1,
+        this.file.name.length
+      )
     },
-    content () {
+    content() {
       return highlightCode(this.file.content, this.language)
     },
   },
@@ -25,16 +32,16 @@ export default {
 </script>
 
 <style scoped>
-.code {
+.example_preview_file_content.code {
   border-radius: 0 0 4px 4px;
 }
 
-.code pre {
+.example_preview_file_content.code >>> pre {
   margin: 0;
 }
 
 @media (max-width: 419px) {
-  .code.code.code {
+  .example_preview_file_content.code.code {
     margin: 0;
   }
 }
