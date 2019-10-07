@@ -10,10 +10,11 @@
   "scripts": {
     "lint": "eslint --color --ext=js,html lib test",
     "unit": "jest",
-    "dev": "npm run unit -- --watchAll",
+    "dev": "yarn run unit --watchAll",
     "docs": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "test": "npm run lint && npm run unit"
+    "pretest": "yarn run lint",
+    "test": "yarn run unit"
   },
   "files": [
     "lib",
@@ -25,6 +26,7 @@
   "devDependencies": {
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/preset-env": "^7.6.2",
+    "@types/jest": "^24.0.18",
     "@vue/test-utils": "^1.0.0-beta.25",
     "babel-core": "bridge",
     "babel-jest": "^24.9.0",

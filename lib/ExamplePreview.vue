@@ -1,11 +1,15 @@
 <template>
   <div class="demo" :class="containerClasses">
-    <ExamplePreviewBar :view-code.sync="viewCode" :files="files" :current-file.sync="currentFile" />
+    <ExamplePreviewBar
+      :view-code.sync="viewCode"
+      :files="files"
+      :current-file.sync="currentFile"
+    />
     <!-- <Promised :promise="examplePromise">
       <span></span>
       <span slot="catch" slot-scope="error"></span>
     </Promised> -->
-    <!-- <Promised :promise="examplePromise"> -->
+    <!-- <keep-alive :promise="examplePromise"> -->
     <div v-if="!demoComponent" class="example">Loading example...</div>
     <div v-else>
       <keep-alive include="ExamplePreviewDemoWrapper">
@@ -14,7 +18,10 @@
           <ExamplePreviewFileContent v-if="currentFile" :file="currentFile" />
         </template>
         <template v-else>
-          <ExamplePreviewDemoWrapper class="example" :component="demoComponent" />
+          <ExamplePreviewDemoWrapper
+            class="example"
+            :component="demoComponent"
+          />
         </template>
       </keep-alive>
     </div>
@@ -23,7 +30,7 @@
 
       <button class="action-button" @click="loadPage">Retry</button>
     </div>
-    </Promised>
+    <!-- </Promised> -->
   </div>
 </template>
 
@@ -39,8 +46,8 @@ export default {
     name: String,
     initialView: {
       type: String,
-      default: 'demo'
-    }
+      default: 'demo',
+    },
   },
 
   data() {
@@ -51,15 +58,17 @@ export default {
       currentFile: null,
 
       // TODO use vue-promised
-      examplePromise: null
+      examplePromise: null,
     }
   },
 
   methods: {
-    async loadPage () {
+    async loadPage() {
       if (!this.name) return
       // TODO allow users to provide the same example for all locales
-      this.examplePromise = (this.pagePath ? import(`@source/${this.pagePath}/examples/${this.name}/index.js`) : import(`@source/examples/${this.name}/index.js`))
+      this.examplePromise = this.pagePath
+        ? import(`@source/${this.pagePath}/examples/${this.name}/index.js`)
+        : import(`@source/examples/${this.name}/index.js`)
       const Example = await this.examplePromise
       // TODO dev warnings
       if (!Example || !Example.App) return
@@ -91,12 +100,16 @@ export default {
         }
 
         if (this.pagePath) {
-          import(`!raw-loader!@source/${this.pagePath}/examples/${this.name}/${files[name]}`).then(handleImport)
+          import(
+            `!raw-loader!@source/${this.pagePath}/examples/${this.name}/${files[name]}`
+          ).then(handleImport)
         } else {
-          import(`!raw-loader!@source/examples/${this.name}/${files[name]}`).then(handleImport)
+          import(
+            `!raw-loader!@source/examples/${this.name}/${files[name]}`
+          ).then(handleImport)
         }
       })
-    }
+    },
   },
 
   computed: {
@@ -105,19 +118,23 @@ export default {
     },
     // this seems to be necessary to correctly code split
     // it allows import path to have the slashes in them
-    pagePath () {
+    pagePath() {
       return this.$localePath.replace(/^\//, '').replace(/\/$/, '')
-    }
+    },
   },
 
   watch: {
     name: {
       handler: 'loadPage',
-      immediate: true
-    }
+      immediate: true,
+    },
   },
 
-  components: { ExamplePreviewBar, ExamplePreviewFileContent, ExamplePreviewDemoWrapper }
+  components: {
+    ExamplePreviewBar,
+    ExamplePreviewFileContent,
+    ExamplePreviewDemoWrapper,
+  },
 }
 </script>
 
